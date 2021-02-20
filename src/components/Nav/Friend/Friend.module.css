@@ -1,0 +1,13 @@
+.box{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: purple;
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 15px;
+    margin: 20px 0px;
+}
+.title{
+}
