@@ -15,8 +15,7 @@ const App = (props) => {
 				<Nav data={props.data.Nav}/>
 				<Route path="/dialogs" render={ () => <Dialogs data={props.data.Dialogs} />} />
 				<Route path="/profile" render={ () => <Profile data={props.data.Profile} 
-																addPost={props.addPost}
-																updatePost={props.updatePost}/>} />
+															   dispatch={props.dispatch}/>} />
 				<Route path="/settings" component={Settings} />
 				<Route path="/music" component={Music} />
 				<Redirect from="/" to="profile"/> 

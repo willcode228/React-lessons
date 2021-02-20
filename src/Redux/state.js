@@ -38,7 +38,7 @@ let store = {
   getState() {
     return this._state;
   },
-  addPost() {
+  _addPost() {
     let post = { 
       id: this._state.Profile.postMessage.length, 
       message: this._state.Profile.textMessage 
@@ -47,14 +47,28 @@ let store = {
     this._callSubscriber();
     this._state.Profile.textMessage = '';
   },
-  updatePostMessage(text) {
+  _updatePostMessage(text) {
     this._state.Profile.textMessage = text;
     this._callSubscriber();
   },
   subscribe(func) {
     this._callSubscriber = func;
   },
-  _callSubscriber() { }
+  _callSubscriber() { },
+
+  dispatch(action) {
+    switch(action.type){
+      case 'ADD-POST': 
+        this._addPost();
+        break;
+      case 'UPDATE-POST-MESSAGE':
+        this._updatePostMessage(action.text);
+        break;
+      default:
+        console.error('This action is not defined');
+        break;
+    }
+  }
 }
 
 export default store;

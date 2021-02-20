@@ -6,11 +6,11 @@ const Profile = (props) => {
 
     let textarea = React.createRef(); 
     
-    let addPost = () => { if(props.data.textMessage) props.addPost(); }
+    let addPost = () => { if(props.data.textMessage) props.dispatch({type: 'ADD-POST'}); }
 
     let changePost = () => {
         let text = textarea.current.value;
-        props.updatePost(text);
+        props.dispatch({type: 'UPDATE-POST-MESSAGE', text: text});
     }
 
     return (
