@@ -1,4 +1,5 @@
 import React from 'react'
+import { addPostActionCreator, updatePostMessageActionCreator } from '../../Redux/state';
 const { default: MyPosts } = require("./MyPosts/MyPosts")
 
 
@@ -6,11 +7,11 @@ const Profile = (props) => {
 
     let textarea = React.createRef(); 
     
-    let addPost = () => { if(props.data.textMessage) props.dispatch({type: 'ADD-POST'}); }
+    let addPost = () => { if(props.data.textMessage) props.dispatch(addPostActionCreator()); }
 
     let changePost = () => {
         let text = textarea.current.value;
-        props.dispatch({type: 'UPDATE-POST-MESSAGE', text: text});
+        props.dispatch(updatePostMessageActionCreator(text));
     }
 
     return (

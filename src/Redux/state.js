@@ -1,3 +1,5 @@
+const addPOST = 'ADD-POST',
+      updatePost = 'UPDATE-POST-MESSAGE';
 let store = {
   _state: {
     Dialogs: {
@@ -58,10 +60,10 @@ let store = {
 
   dispatch(action) {
     switch(action.type){
-      case 'ADD-POST': 
+      case addPOST: 
         this._addPost();
         break;
-      case 'UPDATE-POST-MESSAGE':
+      case updatePost:
         this._updatePostMessage(action.text);
         break;
       default:
@@ -72,3 +74,12 @@ let store = {
 }
 
 export default store;
+
+export const addPostActionCreator = () => ({ type: addPOST });
+
+
+export const updatePostMessageActionCreator = (newText) => 
+        ({
+          type: updatePost,
+          text: newText
+        });
