@@ -1,5 +1,8 @@
 const addPOST = 'ADD-POST',
-      updatePost = 'UPDATE-POST-MESSAGE';
+      updatePost = 'UPDATE-POST-MESSAGE',
+      addMessage = 'ADD-DIALOG-MESSAGE',
+      updateMessage = 'UPDATE-DIALOG-MESSAGE';
+
 let store = {
   _state: {
     Dialogs: {
@@ -18,7 +21,8 @@ let store = {
         { id: 4, message: 'I think you must to sleep' },
         { id: 5, message: 'Do you do your homework' },
         { id: 6, message: 'Bye' },
-      ]
+      ],
+      textMessage: 'asdf'
     },
     Profile: {
       postMessage: [
@@ -40,6 +44,8 @@ let store = {
   getState() {
     return this._state;
   },
+
+
   _addPost() {
     let post = { 
       id: this._state.Profile.postMessage.length, 
@@ -53,6 +59,24 @@ let store = {
     this._state.Profile.textMessage = text;
     this._callSubscriber();
   },
+
+
+  _updateDialogMessage(text) {
+    this._state.Dialogs.textMessage = text;
+    this._callSubscriber();
+  },
+  _addDialogMessage() {
+    let message = {
+      id: this._state.Dialogs.messageData.length,
+      message: this._state.Dialogs.textMessage
+    };
+    this._state.Dialogs.textMessage = '';
+    this._state.Dialogs.messageData.push(message);
+    this._callSubscriber();
+
+  },
+
+
   subscribe(func) {
     this._callSubscriber = func;
   },
@@ -66,6 +90,12 @@ let store = {
       case updatePost:
         this._updatePostMessage(action.text);
         break;
+      case addMessage:
+        this._addDialogMessage();
+        break;
+      case updateMessage:
+        this._updateDialogMessage(action.text);
+        break;
       default:
         console.error('This action is not defined');
         break;
@@ -75,11 +105,18 @@ let store = {
 
 export default store;
 
+
 export const addPostActionCreator = () => ({ type: addPOST });
-
-
 export const updatePostMessageActionCreator = (newText) => 
         ({
           type: updatePost,
+          text: newText
+        });
+
+
+export const addDialogMessageActionCreator = () => ({ type: addMessage });
+export const updateDialogMessageActionCreator = (newText) => 
+        ({
+          type: updateMessage,
           text: newText
         });
