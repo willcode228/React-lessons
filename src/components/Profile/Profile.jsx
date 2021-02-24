@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreator, updatePostMessageActionCreator } from '../../Redux/state';
+import { addPostActionCreator, updatePostMessageActionCreator } from '../../Redux/profile-reducer';
 const { default: MyPosts } = require("./MyPosts/MyPosts")
 
 

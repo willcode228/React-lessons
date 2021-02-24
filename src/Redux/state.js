@@ -1,7 +1,5 @@
-const addPOST = 'ADD-POST',
-      updatePost = 'UPDATE-POST-MESSAGE',
-      addMessage = 'ADD-DIALOG-MESSAGE',
-      updateMessage = 'UPDATE-DIALOG-MESSAGE';
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
 
 let store = {
   _state: {
@@ -45,78 +43,17 @@ let store = {
     return this._state;
   },
 
-
-  _addPost() {
-    let post = { 
-      id: this._state.Profile.postMessage.length, 
-      message: this._state.Profile.textMessage 
-    };
-    this._state.Profile.postMessage.push(post);
-    this._callSubscriber();
-    this._state.Profile.textMessage = '';
-  },
-  _updatePostMessage(text) {
-    this._state.Profile.textMessage = text;
-    this._callSubscriber();
-  },
-
-
-  _updateDialogMessage(text) {
-    this._state.Dialogs.textMessage = text;
-    this._callSubscriber();
-  },
-  _addDialogMessage() {
-    let message = {
-      id: this._state.Dialogs.messageData.length,
-      message: this._state.Dialogs.textMessage
-    };
-    this._state.Dialogs.textMessage = '';
-    this._state.Dialogs.messageData.push(message);
-    this._callSubscriber();
-
-  },
-
-
   subscribe(func) {
     this._callSubscriber = func;
   },
   _callSubscriber() { },
 
   dispatch(action) {
-    switch(action.type){
-      case addPOST: 
-        this._addPost();
-        break;
-      case updatePost:
-        this._updatePostMessage(action.text);
-        break;
-      case addMessage:
-        this._addDialogMessage();
-        break;
-      case updateMessage:
-        this._updateDialogMessage(action.text);
-        break;
-      default:
-        console.error('This action is not defined');
-        break;
-    }
+    this._state.Profile = profileReducer(this._state.Profile, action);
+    this._state.Dialogs = dialogsReducer(this._state.Dialogs, action);
+    this._callSubscriber();
   }
 }
 
 export default store;
 
-
-export const addPostActionCreator = () => ({ type: addPOST });
-export const updatePostMessageActionCreator = (newText) => 
-        ({
-          type: updatePost,
-          text: newText
-        });
-
-
-export const addDialogMessageActionCreator = () => ({ type: addMessage });
-export const updateDialogMessageActionCreator = (newText) => 
-        ({
-          type: updateMessage,
-          text: newText
-        });

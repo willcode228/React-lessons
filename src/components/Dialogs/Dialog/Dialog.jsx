@@ -1,6 +1,6 @@
-import { addDialogMessageActionCreator, updateDialogMessageActionCreator } from '../../../Redux/state';
+import { addDialogMessageActionCreator, updateDialogMessageActionCreator } from '../../../Redux/dialogs-reducer';
 import styles from './Dialog.module.css';
-import Message from './Messsage/Message';
+import Message from './Message/Message';
 
 const Dialog = (props) => {
 
