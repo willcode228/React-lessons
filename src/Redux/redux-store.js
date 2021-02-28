@@ -1,9 +1,15 @@
+import dialogsReducer from "./dialogs-reducer";
+import navbarReducer from "./navbar-reducer";
+import profileReducer from "./profile-reducer";
+
 const { createStore, combineReducers } = require("redux");
 
-let reducer = combineReducers({
-   
+let reducers = combineReducers({
+    Dialogs: dialogsReducer,
+    Profile: profileReducer,
+    Nav: navbarReducer
 }) 
 
-let store = createStore();
+let store = createStore(reducers);
 
 export default store;

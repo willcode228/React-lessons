@@ -1,7 +1,27 @@
 const addMessage = 'ADD-DIALOG-MESSAGE',
       updateMessage = 'UPDATE-DIALOG-MESSAGE';
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    contactsObj: [
+        { id: "1", name: "Dima" },
+        { id: "2", name: "Lena" },
+        { id: "3", name: "Sveta" },
+        { id: "4", name: "Anya" },
+        { id: "5", name: "Denis" },
+        { id: "6", name: "Ivan" },
+    ],
+    messageData: [
+        { id: 1, message: 'HI' },
+        { id: 2, message: 'How are you?' },
+        { id: 3, message: 'What did you do?' },
+        { id: 4, message: 'I think you must to sleep' },
+        { id: 5, message: 'Do you do your homework' },
+        { id: 6, message: 'Bye' },
+    ],
+    textMessage: 'Any message'
+}
+
+const dialogsReducer = (state = initialState, action) => {
     switch(action.type){
         case addMessage:
             let message = {
