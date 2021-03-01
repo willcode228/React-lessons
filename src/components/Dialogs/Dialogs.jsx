@@ -1,14 +1,12 @@
 import DialogsContacts from './DialogsContacts/DialogsContacts'
-import Dialog from './Dialog/Dialog';
 import styles from './Dialogs.module.css';
+import DialogContainer from './Dialog/DialogContainer';
 
 const Dialogs = (props) => {
     return (
         <div className={`${styles.wrapper} app__wrapper-item`}>
             <DialogsContacts contacts={props.data.contactsObj}/>
-            <Dialog dialog={props.data.messageData} 
-                    message={props.data.textMessage}
-                    dispatch={props.dispatch}/>
+            <DialogContainer store={props.store}/>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreator, updatePostMessageActionCreator } from '../../Redux/profile-reducer';
+// import { addPostActionCreator, updatePostMessageActionCreator } from '../../Redux/profile-reducer';
 const { default: MyPosts } = require("./MyPosts/MyPosts")
 
 
@@ -7,11 +7,13 @@ const Profile = (props) => {
 
     let textarea = React.createRef(); 
     
-    let addPost = () => { if(props.data.textMessage) props.dispatch(addPostActionCreator()); }
+    let onAddPost = () => {
+        props.addPost()
+    }
 
     let changePost = () => {
         let text = textarea.current.value;
-        props.dispatch(updatePostMessageActionCreator(text));
+        props.updatePostText(text);
     }
 
     return (
@@ -30,10 +32,13 @@ const Profile = (props) => {
                 </div>
             </div>
             <div className="input__form">
-                <textarea onChange={ changePost } placeholder="Your message" value={props.data.textMessage} ref={textarea}/>
-                <input type="submit" onClick={ addPost } />
+                <textarea placeholder="Your message" 
+                            onChange={ changePost }  
+                            value={props.textMessage} 
+                            ref={textarea}/>
+                <input type="submit" onClick={ onAddPost } />
             </div>
-            <MyPosts data={props.data.postMessage}/>
+            <MyPosts posts={props.posts}/>
         </section>
     );
 }

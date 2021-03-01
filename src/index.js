@@ -12,6 +12,7 @@ const domRenderer = () => {
       <BrowserRouter>
 
         <App data={store.getState()} 
+              store={store}
              dispatch={store.dispatch.bind(store)}/>
              
       </BrowserRouter>
