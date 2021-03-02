@@ -13,9 +13,8 @@ const App = (props) => {
 			<Header />
 			<main className="content">
 				<Nav data={props.data.Nav}/>
-				<Route path="/dialogs" render={ () => <Dialogs store={props.store}
-																data={props.data.Dialogs}/>} />
-				<Route path="/profile" render={ () => <ProfileContainer store={props.store}/>} />
+				<Route path="/dialogs" render={ () => <Dialogs data={props.data.Dialogs}/>} />
+				<Route path="/profile" render={ () => <ProfileContainer/>} />
 				<Route path="/settings" component={Settings} />
 				<Route path="/music" component={Music} />
 				<Redirect from="/" to="profile"/> 

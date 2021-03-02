@@ -6,7 +6,7 @@ const Dialogs = (props) => {
     return (
         <div className={`${styles.wrapper} app__wrapper-item`}>
             <DialogsContacts contacts={props.data.contactsObj}/>
-            <DialogContainer store={props.store}/>
+            <DialogContainer/>
         </div>
     );
 }
