@@ -1,6 +1,8 @@
+import s from './Profile.module.css';
+
 const Profile = () => {
     return (
-        <div className="content">
+        <div className={`${s.profile} profile`}>
             Профайл
         </div>
     );
