@@ -1,0 +1,21 @@
+.myPost{
+    padding: 20px;
+}
+
+.myPost__title{
+    margin-bottom: 20px;
+}
+.myPost__form textarea{
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+.myPost__form button{
+    width: 200px;
+    height: 60px;
+}
+
+
+.posts{
+    margin-top: 30px;
+}

@@ -5,15 +5,8 @@
 }
 .main{
   width: 100%;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   background: rebeccapurple;
   display: flex;
-}
-
-.header,
-.aside,
-.profile{
-  padding: 40px;
-  color: white;
 }
 

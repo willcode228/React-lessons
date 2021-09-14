@@ -1,0 +1,10 @@
+.profile__user{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.profile__ava{
+    margin-right: 20px;
+}
