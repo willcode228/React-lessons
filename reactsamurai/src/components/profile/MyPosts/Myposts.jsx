@@ -13,9 +13,10 @@ const MyPosts = () => {
             </form>
 
             <div className={s.posts}>
-                <Post />
-                <Post />
-                <Post />
+                <Post message="Чики брики" likes="4"/>
+                <Post message="Чик чирик" likes="7"/>
+                <Post message="Напас" likes="1"/>
+                <Post message="Лавандос" likes="2"/>
             </div>
 
         </div>

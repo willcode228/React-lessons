@@ -9,6 +9,15 @@
     border-radius: 50%;
     margin-right: 30px;
 }
+.posts__item p,
+.posts__item h6{
+    margin: 5px;
+}
+
 .posts__item p{
     color: white;
+}
+
+.posts__item h6{
+    color: darkblue;
 }
