@@ -1,17 +1,16 @@
 import './App.css';
-import Aside from './components/aside/Aside';
-import Header from './components/header/Header';
-import Profile from './components/profile/Profile';
+import Aside from './components/Aside/Aside';
+import Dialogs from './components/Dialogs/Dialogs';
+import Header from './components/Header/Header';
+// import Profile from './components/Profile/Profile';
 
 function App() {
 	return (
 		<div className="App">
 			<Header />
-			<main className="main">
-				<Aside />
-				<Profile />
-			</main>
-
+			<Aside />
+			{/* <Profile /> */}
+            <Dialogs />
 		</div>
 	);
 }

@@ -1,6 +1,7 @@
 .aside{
-    flex: 0 0 300px;
-    height: 100%;
+    max-width: 300px;
+    min-width: 300px; 
+    flex: 1 1 300px;
     background: darksalmon;
     padding: 40px;
     color: white;
