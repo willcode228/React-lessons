@@ -1,14 +1,14 @@
 import s from './Aside.module.css';
-
+import { Link } from 'react-router-dom';
 const Aside = () => {
     return (
         <aside className={`${s.aside} aside`}>
             <ul>
-                <li><a href="#l1">Profile</a></li>
-                <li><a href="#l2">Massages</a></li>
-                <li><a href="#l3">News</a></li>
-                <li><a href="#l4">Music</a></li>
-                <li><a href="#l5">Settings</a></li>
+                <li><Link to="/profile">Profile</Link></li>
+                <li><Link to="/dialogs">Massages</Link></li>
+                <li><Link to="/news">News</Link></li>
+                <li><Link to="/music">Music</Link></li>
+                <li><Link to="/settings">Settings</Link></li>
             </ul>
         </aside>
     );
