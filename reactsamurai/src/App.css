@@ -1,12 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
-  /* padding: 40px; */
   display: flex;
   flex-wrap: wrap;
 }
-/* .main{
-  width: 100%;
-  min-height: calc(100vh - 60px);
-  background: rebeccapurple;
-  display: flex;
-} */
+
+ul{
+  list-style-type: none;
+}
+
 
