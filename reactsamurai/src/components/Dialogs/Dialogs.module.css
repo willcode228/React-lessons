@@ -2,31 +2,15 @@
     display: flex;
 }
 
-.dialogs__list,
-.messages{
-    margin: 0;
-}
-
 .dialogs__list{
     min-width: 300px;
 }
 
-.messages{
+.messages__list{
     padding: 40px;
     list-style-type: disc;
     flex-grow: 1;
     background: white;
 }
 
-.dialogs__item{
-    min-width: 100%;
-    color: white;
-    font-size: 24px;
-    padding: 20px;
-    border: 1px solid;
-}
 
-.messages__item{
-    font-size: 18px;
-    margin-bottom: 35px;
-}
