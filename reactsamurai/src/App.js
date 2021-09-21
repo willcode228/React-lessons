@@ -8,16 +8,16 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import './App.css';
 
-function App() {
+function App(props) {
 	return (
 		<Router>
 			<div className="App">
 				<Header />
 				<Aside />
 
-				<Route path="/dialogs" component={Dialogs} />
+				<Route path="/dialogs" render={ <Dialogs data={props.data.Dialogs} />} />
 
-				<Route path="/profile" component={Profile} />
+				<Route path="/profile" render={ <Profile data={props.data.Profile} /> } />
 
 				<Route path="/news" component={News} />
 

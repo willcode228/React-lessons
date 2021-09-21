@@ -1,18 +1,9 @@
 import s from './Myposts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
-    let dataPosts = [
-        {message: 'Чики брики', likes: 6, id: 1},
-        {message: 'Чик чирик', likes: 12, id: 2},
-        {message: 'Напас', likes: 99, id: 3},
-        {message: 'Лавандос', likes: 5, id: 4},
-        {message: 'Пачка', likes: 11, id: 5},
-        {message: 'Папирос', likes: 8, id: 6},
-    ];
-
-    let dataPostsElement = dataPosts.map(obj => <Post message={obj.message} likesCount={obj.likes}/>);
+    let posts = props.messages.map(obj => <Post message={obj.message} likesCount={obj.likes}/>);
 
     return (
         <div className={s.myPost}>
@@ -25,7 +16,7 @@ const MyPosts = () => {
             </form>
 
             <div className={s.posts}>
-                {dataPostsElement}
+                {posts}
             </div>
 
         </div>
