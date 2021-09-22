@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Aside from './components/Aside/Aside';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
@@ -10,14 +10,14 @@ import './App.css';
 
 function App(props) {
 	return (
-		<Router>
+		<BrowserRouter>
 			<div className="App">
 				<Header />
 				<Aside />
 
-				<Route path="/dialogs" render={ <Dialogs data={props.data.Dialogs} />} />
+				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} /> } />
 
-				<Route path="/profile" render={ <Profile data={props.data.Profile} /> } />
+				<Route path="/profile" render={ () => <Profile data={props.data.profile} /> } />
 
 				<Route path="/news" component={News} />
 
@@ -26,7 +26,7 @@ function App(props) {
 				<Route path="/settings" component={Settings} />
 
 			</div>
-		</Router>
+		</BrowserRouter>
 	);
 }
 
