@@ -25,6 +25,20 @@ let state = {
             { message: 'Пачка', likes: 11, id: 5 },
             { message: 'Папирос', likes: 8, id: 6 },
         ]
+    },
+    aside: {
+        navLinks: [
+            {title: 'Profile', path: '/profile'},
+            {title: 'Massages', path: '/dialogs'},
+            {title: 'News', path: '/news'},
+            {title: 'Music', path: '/music'},
+            {title: 'Settings', path: '/settings'},
+        ],
+        friends: [
+            {name: 'Lena'},
+            {name: 'Vika'},
+            {name: 'Sacha'}
+        ]
     }
 }
 

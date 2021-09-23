@@ -13,7 +13,7 @@ function App(props) {
 		<BrowserRouter>
 			<div className="App">
 				<Header />
-				<Aside />
+				<Aside data={props.data.aside}/>
 
 				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} /> } />
 
