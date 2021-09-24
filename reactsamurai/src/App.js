@@ -17,7 +17,7 @@ function App(props) {
 
 				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} /> } />
 
-				<Route path="/profile" render={ () => <Profile data={props.data.profile} /> } />
+				<Route path="/profile" render={ () => <Profile data={props.data.profile} addPost={props.addPost}/> } />
 
 				<Route path="/news" component={News} />
 

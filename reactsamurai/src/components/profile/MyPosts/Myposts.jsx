@@ -9,7 +9,8 @@ const MyPosts = (props) => {
     let textareaLink = React.createRef();
 
     const addPost = () => {
-        console.log(textareaLink.current.value);
+        let text = textareaLink.current.value.trim();
+        props.addPost(text);
     }
 
     return (

@@ -42,4 +42,10 @@ let state = {
     }
 }
 
+export const addPost = (text) => {
+    let newPost = {message: text, likes: 0, id: state.profile.posts.length}
+    state.profile.posts.push(newPost);
+    console.log(state.profile.posts);
+}
+
 export default state;
