@@ -2,6 +2,7 @@ import s from './Dialogs.module.css'
 import { Main } from "../StyledComponents/Main";
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
+import MessageForm from './MessageForm/MessageForm';
 
 const Dialogs = (props) => {
 
@@ -15,9 +16,12 @@ const Dialogs = (props) => {
                 { userElements }
             </ul>
 
-            <ul className={s.messages__list}>
-                { messagesElements }
-            </ul>
+            <div className={s.messages__wrapper}>
+                <ul className={s.messages__list}>
+                    { messagesElements }
+                </ul>
+                <MessageForm />
+            </div>
 
         </Main>
     );
