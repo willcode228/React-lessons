@@ -1,3 +1,5 @@
+import rerenderEntireTree from "../render";
+
 let state = {
     dialogs: {
         dialogs: [
@@ -17,14 +19,7 @@ let state = {
         ]
     },
     profile: {
-        posts: [
-            { message: 'Чики брики', likes: 6, id: 1 },
-            { message: 'Чик чирик', likes: 12, id: 2 },
-            { message: 'Напас', likes: 99, id: 3 },
-            { message: 'Лавандос', likes: 5, id: 4 },
-            { message: 'Пачка', likes: 11, id: 5 },
-            { message: 'Папирос', likes: 8, id: 6 },
-        ]
+        posts: []
     },
     aside: {
         navLinks: [
@@ -45,7 +40,7 @@ let state = {
 export const addPost = (text) => {
     let newPost = {message: text, likes: 0, id: state.profile.posts.length}
     state.profile.posts.push(newPost);
-    console.log(state.profile.posts);
+    rerenderEntireTree(state, addPost);
 }
 
 export default state;

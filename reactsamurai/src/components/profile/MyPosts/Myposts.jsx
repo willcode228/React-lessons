@@ -11,6 +11,7 @@ const MyPosts = (props) => {
     const addPost = () => {
         let text = textareaLink.current.value.trim();
         props.addPost(text);
+        textareaLink.current.value = '';
     }
 
     return (
