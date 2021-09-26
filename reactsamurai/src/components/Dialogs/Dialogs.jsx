@@ -6,8 +6,8 @@ import MessageForm from './MessageForm/MessageForm';
 
 const Dialogs = (props) => {
 
-    let userElements = props.data.dialogs.map( dialog => <Dialog name={dialog.user} id={dialog.id}/>),
-        messagesElements = props.data.messages.map(message => <Message text={message.text} />)
+    let userElements = props.data.dialogs.map( dialog => <Dialog name={dialog.user} key={dialog.id} id={dialog.id}/>),
+        messagesElements = props.data.messages.map(message => <Message text={message.text} key={message.id}/>)
 
     return (
         <Main className={s.dialogs}>
