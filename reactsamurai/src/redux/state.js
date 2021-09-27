@@ -39,6 +39,22 @@ const store = {
         }
     },
 
+    _rerenderApp() {
+        console.log()
+    },
+
+
+
+    stateSubscriber(observer) {
+        this._rerenderApp = observer;
+    },
+
+    getState() {
+        return this._state;
+    },
+
+
+
     addPost() {
         let newPost = {
             message: this._state.profile.textarea, 
@@ -71,17 +87,21 @@ const store = {
         this._rerenderApp();
     },
 
-    stateSubscriber(observer) {
-        this._rerenderApp = observer;
-    },
 
-    _rerenderApp() {
-        console.log()
-    },
-
-    getState() {
-        return this._state;
+    dispatch(action) {
+        switch(action.type){
+            case 'ADD-POST': this.addPost();
+                break;
+            case 'ADD-MESSAGE': this.addMessage();
+                break;
+            case 'CHANGE-POST-TEXT': this.changeProfileAreaText(action.text);
+                break;
+            case 'CHANGE-DIALOGS-TEXT': this.changeDialogsAreaText(action.text);
+                break;
+            default: throw new Error(`Action type - "${action.type}" is not defined`);
+        }   
     }
+    
 }
 
 export default store;

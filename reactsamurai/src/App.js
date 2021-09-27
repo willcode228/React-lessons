@@ -9,7 +9,6 @@ import Settings from './components/Settings/Settings';
 import './App.css';
 
 function App(props) {
-	console.log(props.store);
 	return (
 		<BrowserRouter>
 			<div className="App">
@@ -17,12 +16,10 @@ function App(props) {
 				<Aside data={props.state.aside}/>
 
 				<Route path="/dialogs" render={ () => <Dialogs data={props.state.dialogs} 
-																addMessage={props.addMessage}
-																newMessageText={props.newMessageText}/> } />
+																dispatch={props.dispatch}/> } />
 
 				<Route path="/profile" render={ () => <Profile data={props.state.profile} 
-																addPost={props.addPost} 
-																newPostText={props.newPostText}/> } />
+																dispatch={props.dispatch}/> } />
 
 				<Route path="/news" component={News} />
 

@@ -3,21 +3,25 @@ import s from './MessageForm.module.css';
 
 const MessageForm = (props) => {
 
-    let textareaLink = React.createRef();
-
     const addMessage = () => {
-        props.addMessage();
+        let action = {
+            type: 'ADD-MESSAGE'
+        }
+        props.dispatch(action);
     }
 
-    const changeAreaText = () => {
-        let text = textareaLink.current.value.trim();
-        props.newMessageText(text);
+    const changeAreaText = (e) => {
+        let action = {
+            type: 'CHANGE-DIALOGS-TEXT', 
+            text: e.target.value
+        }
+        props.dispatch(action);
     }
 
 
     return (
         <div className={s.form}>
-            <textarea placeholder="Your message here" ref={textareaLink} value={props.text} onChange={ changeAreaText }/>
+            <textarea placeholder="Your message here" value={props.text} onChange={ changeAreaText }/>
             <button onClick={ addMessage } >Add new message</button>
         </div>
     );

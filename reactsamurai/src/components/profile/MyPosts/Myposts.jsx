@@ -6,15 +6,20 @@ const MyPosts = (props) => {
 
     let posts = props.messages.map(obj => <Post message={obj.message} likesCount={obj.likes} key={obj.id}/>);
 
-    let textareaLink = React.createRef();
-
     const addPost = () => {
-        props.addPost();
+        let action = {
+            type: 'ADD-POST'
+        }
+
+        props.dispatch(action);
     }
 
-    const changeProfileAreaText = () => {
-        let text = textareaLink.current.value.trim();
-        props.newPostText(text);
+    const changeProfileAreaText = (e) => {
+        let action = {
+            type: 'CHANGE-POST-TEXT',
+            text: e.target.value
+        }
+        props.dispatch(action);
     }
 
     return (
@@ -23,7 +28,7 @@ const MyPosts = (props) => {
             <h2 className={s.myPost__title}>My Posts</h2>
 
             <div className={s.myPost__form}>
-                <textarea placeholder="Your new post" ref={textareaLink} value={props.textarea} onChange={ changeProfileAreaText }/>
+                <textarea placeholder="Your new post" value={props.textarea} onChange={ changeProfileAreaText }/>
                 <button type="submit" onClick={ addPost }>Sent</button>
             </div>
 

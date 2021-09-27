@@ -23,8 +23,7 @@ const Dialogs = (props) => {
                 </ul>
 
                 <MessageForm    text={props.data.textarea}
-                                addMessage={props.addMessage}
-                                newMessageText={props.newMessageText}/>
+                                dispatch={props.dispatch}/>
             </div>
 
         </Main>
