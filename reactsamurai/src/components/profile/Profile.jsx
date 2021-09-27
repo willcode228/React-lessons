@@ -8,7 +8,7 @@ const Profile = (props) => {
         <Main>
             <ProfileHead />
             <User />
-            <MyPosts messages={props.data.posts} textarea={props.data.textarea} addPost={props.addPost} change={props.change}/>
+            <MyPosts messages={props.data.posts} textarea={props.data.textarea} addPost={props.addPost} newPostText={props.newPostText}/>
         </Main>
     );
 }

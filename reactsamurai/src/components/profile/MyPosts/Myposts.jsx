@@ -14,7 +14,7 @@ const MyPosts = (props) => {
 
     const changeProfileAreaText = () => {
         let text = textareaLink.current.value.trim();
-        props.change(text);
+        props.newPostText(text);
     }
 
     return (

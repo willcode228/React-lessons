@@ -1,5 +1,3 @@
-import rerenderEntireTree from "../render";
-
 let state = {
     dialogs: {
         dialogs: [
@@ -16,7 +14,8 @@ let state = {
             { text: 'Hey', id: 3 },
             { text: 'Hey', id: 4 },
             { text: 'Hey', id: 5 },
-        ]
+        ],
+        textarea: ''
     },
     profile: {
         posts: [],
@@ -38,6 +37,8 @@ let state = {
     }
 }
 
+let rerenderApp;
+
 export const addPost = () => {
     let newPost = {
         message: state.profile.textarea, 
@@ -45,13 +46,34 @@ export const addPost = () => {
         id: state.profile.posts.length + 1
     }
     state.profile.posts.push(newPost);
-    rerenderEntireTree(state, addPost, changeProfileAreaText);
+    rerenderApp();
     state.profile.textarea = '';
 }
 
 export const changeProfileAreaText = (text) => {
     state.profile.textarea = text;
-    rerenderEntireTree(state, addPost, changeProfileAreaText);
+    rerenderApp();
 }
+
+export const addMessage = () => {
+    let newMessage = {
+        text: state.dialogs.textarea,
+        id: state.dialogs.messages.length + 1
+    }
+
+    state.dialogs.messages.push(newMessage);
+    rerenderApp();
+    state.dialogs.textarea = '';
+}
+
+export const changeDialogsAreaText = (text) => {
+    state.dialogs.textarea = text;
+    rerenderApp();
+}
+
+export const stateSubscriber = (observer) => {
+    rerenderApp = observer;
+};
+
 
 export default state;

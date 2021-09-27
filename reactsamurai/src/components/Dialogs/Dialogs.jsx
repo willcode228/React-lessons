@@ -17,10 +17,14 @@ const Dialogs = (props) => {
             </ul>
 
             <div className={s.messages__wrapper}>
+
                 <ul className={s.messages__list}>
                     { messagesElements }
                 </ul>
-                <MessageForm />
+
+                <MessageForm    text={props.data.textarea}
+                                addMessage={props.addMessage}
+                                newMessageText={props.newMessageText}/>
             </div>
 
         </Main>

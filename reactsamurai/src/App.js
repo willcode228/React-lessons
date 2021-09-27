@@ -15,9 +15,13 @@ function App(props) {
 				<Header />
 				<Aside data={props.data.aside}/>
 
-				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} /> } />
+				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} 
+																addMessage={props.addMessage}
+																newMessageText={props.newMessageText}/> } />
 
-				<Route path="/profile" render={ () => <Profile data={props.data.profile} addPost={props.addPost} change={props.change}/> } />
+				<Route path="/profile" render={ () => <Profile data={props.data.profile} 
+																addPost={props.addPost} 
+																newPostText={props.newPostText}/> } />
 
 				<Route path="/news" component={News} />
 
