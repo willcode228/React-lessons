@@ -9,17 +9,18 @@ import Settings from './components/Settings/Settings';
 import './App.css';
 
 function App(props) {
+	console.log(props.store);
 	return (
 		<BrowserRouter>
 			<div className="App">
 				<Header />
-				<Aside data={props.data.aside}/>
+				<Aside data={props.state.aside}/>
 
-				<Route path="/dialogs" render={ () => <Dialogs data={props.data.dialogs} 
+				<Route path="/dialogs" render={ () => <Dialogs data={props.state.dialogs} 
 																addMessage={props.addMessage}
 																newMessageText={props.newMessageText}/> } />
 
-				<Route path="/profile" render={ () => <Profile data={props.data.profile} 
+				<Route path="/profile" render={ () => <Profile data={props.state.profile} 
 																addPost={props.addPost} 
 																newPostText={props.newPostText}/> } />
 
