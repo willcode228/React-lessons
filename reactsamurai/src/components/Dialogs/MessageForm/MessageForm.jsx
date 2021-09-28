@@ -1,20 +1,16 @@
 import React from 'react';
+import { addMessageActionCreator, changeMessageTexActionCreator } from '../../../redux/state';
 import s from './MessageForm.module.css';
 
 const MessageForm = (props) => {
 
     const addMessage = () => {
-        let action = {
-            type: 'ADD-MESSAGE'
-        }
+        let action = addMessageActionCreator();
         props.dispatch(action);
     }
 
     const changeAreaText = (e) => {
-        let action = {
-            type: 'CHANGE-DIALOGS-TEXT', 
-            text: e.target.value
-        }
+        let action = changeMessageTexActionCreator(e.target.value);
         props.dispatch(action);
     }
 

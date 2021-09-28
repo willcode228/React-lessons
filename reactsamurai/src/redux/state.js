@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST',
+    ADD_MESSAGE = 'ADD-MESSAGE',
+    CHANGE_POST_AREA = 'CHANGE-POST-TEXT',
+    CHANGE_DIALOGS_AREA = 'CHANGE-DIALOGS-TEXT';
+
+
 const store = {
 
     _state: {
@@ -90,18 +96,36 @@ const store = {
 
     dispatch(action) {
         switch(action.type){
-            case 'ADD-POST': this.addPost();
+            case ADD_POST: this.addPost();
                 break;
-            case 'ADD-MESSAGE': this.addMessage();
+            case ADD_MESSAGE: this.addMessage();
                 break;
-            case 'CHANGE-POST-TEXT': this.changeProfileAreaText(action.text);
+            case CHANGE_POST_AREA: this.changeProfileAreaText(action.text);
                 break;
-            case 'CHANGE-DIALOGS-TEXT': this.changeDialogsAreaText(action.text);
+            case CHANGE_DIALOGS_AREA: this.changeDialogsAreaText(action.text);
                 break;
             default: throw new Error(`Action type - "${action.type}" is not defined`);
         }   
     }
     
 }
+
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE
+});
+
+export const changeMessageTexActionCreator = (text) => ({
+    type: CHANGE_DIALOGS_AREA, 
+    text
+});
+
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+});
+
+export const changePostTexActionCreator = (text) => ({
+    type: CHANGE_POST_AREA, 
+    text
+});
 
 export default store;

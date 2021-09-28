@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, changePostTexActionCreator } from '../../../redux/state';
 import s from './Myposts.module.css';
 import Post from './Post/Post';
 
@@ -7,18 +8,12 @@ const MyPosts = (props) => {
     let posts = props.messages.map(obj => <Post message={obj.message} likesCount={obj.likes} key={obj.id}/>);
 
     const addPost = () => {
-        let action = {
-            type: 'ADD-POST'
-        }
-
+        let action = addPostActionCreator();
         props.dispatch(action);
     }
 
     const changeProfileAreaText = (e) => {
-        let action = {
-            type: 'CHANGE-POST-TEXT',
-            text: e.target.value
-        }
+        let action = changePostTexActionCreator(e.target.value);
         props.dispatch(action);
     }
 
