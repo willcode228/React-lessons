@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMessageActionCreator, changeMessageTexActionCreator } from '../../../redux/state';
+import { addMessageActionCreator, changeMessageTexActionCreator } from '../../../redux/DialogsReducer';
 import s from './MessageForm.module.css';
 
 const MessageForm = (props) => {

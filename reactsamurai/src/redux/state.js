@@ -1,8 +1,6 @@
-const ADD_POST = 'ADD-POST',
-    ADD_MESSAGE = 'ADD-MESSAGE',
-    CHANGE_POST_AREA = 'CHANGE-POST-TEXT',
-    CHANGE_DIALOGS_AREA = 'CHANGE-DIALOGS-TEXT';
-
+import dialogsReducer from "./DialogsReducer";
+import profileReducer from "./ProfileReducer";
+import sidebarReducer from "./SidebarReducer";
 
 const store = {
 
@@ -49,8 +47,6 @@ const store = {
         console.log()
     },
 
-
-
     stateSubscriber(observer) {
         this._rerenderApp = observer;
     },
@@ -59,73 +55,15 @@ const store = {
         return this._state;
     },
 
-
-
-    addPost() {
-        let newPost = {
-            message: this._state.profile.textarea, 
-            likes: 0, 
-            id: this._state.profile.posts.length + 1
-        }
-        this._state.profile.posts.push(newPost);
-        this._rerenderApp();
-        this._state.profile.textarea = '';
-    },
-
-    changeProfileAreaText(text) {
-        this._state.profile.textarea = text;
-        this._rerenderApp();
-    },
-
-    addMessage() {
-        let newMessage = {
-            text: this._state.dialogs.textarea,
-            id: this._state.dialogs.messages.length + 1
-        }
-    
-        this._state.dialogs.messages.push(newMessage);
-        this._rerenderApp();
-        this._state.dialogs.textarea = '';
-    },
-
-    changeDialogsAreaText(text) {
-        this._state.dialogs.textarea = text;
-        this._rerenderApp();
-    },
-
-
     dispatch(action) {
-        switch(action.type){
-            case ADD_POST: this.addPost();
-                break;
-            case ADD_MESSAGE: this.addMessage();
-                break;
-            case CHANGE_POST_AREA: this.changeProfileAreaText(action.text);
-                break;
-            case CHANGE_DIALOGS_AREA: this.changeDialogsAreaText(action.text);
-                break;
-            default: throw new Error(`Action type - "${action.type}" is not defined`);
-        }   
+
+        this._state.profile = profileReducer(this._state.profile, action);
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+        this._state.aside = sidebarReducer(this._state.aside, action);
+        
+        this._rerenderApp();  
     }
     
 }
-
-export const addMessageActionCreator = () => ({
-    type: ADD_MESSAGE
-});
-
-export const changeMessageTexActionCreator = (text) => ({
-    type: CHANGE_DIALOGS_AREA, 
-    text
-});
-
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-});
-
-export const changePostTexActionCreator = (text) => ({
-    type: CHANGE_POST_AREA, 
-    text
-});
 
 export default store;
