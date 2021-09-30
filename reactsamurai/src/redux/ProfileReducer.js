@@ -1,16 +1,12 @@
 const ADD_POST = 'ADD-POST',
     CHANGE_POST_AREA = 'CHANGE-POST-TEXT';
 
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-});
+let initialState = {
+    posts: [],
+    textarea: ''
+}
 
-export const changePostTexActionCreator = (text) => ({
-    type: CHANGE_POST_AREA, 
-    text
-});
-
-const profileReducer = (state, action) => {
+const profileReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_POST: 
             let newPost = {
@@ -30,5 +26,14 @@ const profileReducer = (state, action) => {
             return state;
     }
 }
+
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+});
+
+export const changePostTexActionCreator = (text) => ({
+    type: CHANGE_POST_AREA, 
+    text
+});
 
 export default profileReducer;
