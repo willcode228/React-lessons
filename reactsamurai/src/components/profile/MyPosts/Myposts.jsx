@@ -1,5 +1,4 @@
 import React from 'react';
-import { addPostActionCreator, changePostTexActionCreator } from '../../../redux/ProfileReducer';
 import s from './Myposts.module.css';
 import Post from './Post/Post';
 
@@ -7,14 +6,12 @@ const MyPosts = (props) => {
 
     let posts = props.messages.map(obj => <Post message={obj.message} likesCount={obj.likes} key={obj.id}/>);
 
-    const addPost = () => {
-        let action = addPostActionCreator();
-        props.dispatch(action);
+    const add = () => {
+        props.addPost();
     }
 
-    const changeProfileAreaText = (e) => {
-        let action = changePostTexActionCreator(e.target.value);
-        props.dispatch(action);
+    const change = (e) => {
+        props.changePostText(e.target.value);
     }
 
     return (
@@ -23,8 +20,8 @@ const MyPosts = (props) => {
             <h2 className={s.myPost__title}>My Posts</h2>
 
             <div className={s.myPost__form}>
-                <textarea placeholder="Your new post" value={props.textarea} onChange={ changeProfileAreaText }/>
-                <button type="submit" onClick={ addPost }>Sent</button>
+                <textarea placeholder="Your new post" value={props.textarea} onChange={ change }/>
+                <button type="submit" onClick={ add }>Sent</button>
             </div>
 
             <div className={s.posts}>

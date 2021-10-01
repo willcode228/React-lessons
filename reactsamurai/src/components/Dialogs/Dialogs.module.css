@@ -19,5 +19,21 @@
     background: white;
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form textarea{
+    width: 100%;
+    min-height: 100px;
+}
+
+.form button{
+    display: block;
+    width: 100%;
+    min-height: 50px;
+}
+
 
 

@@ -2,12 +2,19 @@ import s from './Dialogs.module.css'
 import { Main } from "../StyledComponents/Main";
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import MessageForm from './MessageForm/MessageForm';
 
 const Dialogs = (props) => {
 
-    let userElements = props.data.dialogs.map( dialog => <Dialog name={dialog.user} key={dialog.id} id={dialog.id}/>),
-        messagesElements = props.data.messages.map(message => <Message text={message.text} key={message.id}/>)
+    let userElements = props.dialogs.map( dialog => <Dialog name={dialog.user} key={dialog.id} id={dialog.id}/>),
+        messagesElements = props.messages.map(message => <Message text={message.text} key={message.id}/>);
+
+    const add = () => {
+        props.addMessage();
+    }
+
+    const change = (e) => {
+        props.changeAreaText(e.target.value);
+    }
 
     return (
         <Main className={s.dialogs}>
@@ -22,8 +29,10 @@ const Dialogs = (props) => {
                     { messagesElements }
                 </ul>
 
-                <MessageForm    text={props.data.textarea}
-                                dispatch={props.dispatch}/>
+                <div className={s.form}>
+                    <textarea placeholder="Your message here" value={props.text} onChange={ change }/>
+                    <button onClick={ add } >Add new message</button>
+                </div>
             </div>
 
         </Main>

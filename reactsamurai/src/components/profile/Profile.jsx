@@ -1,5 +1,5 @@
 import { Main } from '../StyledComponents/Main';
-import MyPosts from './MyPosts/Myposts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileHead from './ProfileHead/ProfileHead';
 import User from './User/User';
 
@@ -8,7 +8,7 @@ const Profile = (props) => {
         <Main>
             <ProfileHead />
             <User />
-            <MyPosts messages={props.data.posts} textarea={props.data.textarea} dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store}/>
         </Main>
     );
 }
