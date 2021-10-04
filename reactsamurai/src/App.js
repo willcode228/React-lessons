@@ -1,4 +1,5 @@
 import { BrowserRouter, Route } from 'react-router-dom';
+import FindUserContainer from './components/FindUser/FindUserContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Settings from './components/Settings/Settings';
 import Profile from './components/Profile/Profile';
@@ -19,6 +20,8 @@ function App(props) {
 				<Route path="/dialogs" render={ () => <DialogsContainer/> } />
 
 				<Route path="/profile" render={ () => <Profile/> } />
+
+				<Route path="/find" render={ () => <FindUserContainer /> } />
 
 				<Route path="/news" component={News} />
 

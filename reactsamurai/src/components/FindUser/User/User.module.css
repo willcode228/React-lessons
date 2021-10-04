@@ -1,0 +1,50 @@
+.user{
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.user__text{
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    min-height: 100px;
+    color: white;
+    border-radius: 40px;
+    border: 1px solid white;
+}
+
+.user__meta{
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.user__wrapper{
+    margin-right: 40px;
+}
+
+.user__name{
+    margin-bottom: 20px;
+}
+
+.user__country{
+    margin-bottom: 5px;
+}
+
+.user__country::after{
+    content: ',';
+}
+
+.user__meta img{
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.user__meta button{
+    margin-top: 10px;
+    height: 30px;
+}
