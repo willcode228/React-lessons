@@ -1,56 +1,44 @@
+import React from 'react';
 import s from './FindUser.module.css';
 import { Main } from "../StyledComponents/Main";
 import User from './User/User';
+import * as axios from 'axios';
 
-const FindUser = (props) => {
+class FindUser extends React.Component{
 
-    if (!props.users.length) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiT-yyLmJNm-LFIkIuz04Wd-sOUYRrpt-bQ&usqp=CAU',
-                    fullName: 'Xui Drocheniy',
-                    note: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus rem suscipit deserunt odio, illo aut omnis in dolore deleniti vitae, sequi explicabo. Minima, alias cum distinctio sit modi quas voluptatem.',
-                    location: { country: 'Ukraine', city: 'Kirovograd' },
-                    followed: true
-                },
-                {
-                    id: 2,
-                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiT-yyLmJNm-LFIkIuz04Wd-sOUYRrpt-bQ&usqp=CAU',
-                    fullName: 'Xui Drocheniy',
-                    note: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus rem suscipit deserunt odio, illo aut omnis in dolore deleniti vitae, sequi explicabo. Minima, alias cum distinctio sit modi quas voluptatem.',
-                    location: { country: 'Ukraine', city: 'Kirovograd' },
-                    followed: false
-                },
-                {
-                    id: 3,
-                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiT-yyLmJNm-LFIkIuz04Wd-sOUYRrpt-bQ&usqp=CAU',
-                    fullName: 'Xui Drocheniy',
-                    note: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus rem suscipit deserunt odio, illo aut omnis in dolore deleniti vitae, sequi explicabo. Minima, alias cum distinctio sit modi quas voluptatem.',
-                    location: { country: 'Ukraine', city: 'Kirovograd' },
-                    followed: true
-                },
-            ]
-        );
+    getUsers() {
+        axios
+            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                if (response.status === 200) {
+                    this.props.setUsers(response.data.items)
+                }
+            });
     }
 
-    let users1 = props.users.map(user => <User follow={props.follow}
-        unfollow={props.unfollow}
-        key={user.id}
-        data={user} />);
+    componentDidMount() {
+        this.getUsers.bind(this)();
+    }
 
-    return (
-        <Main className={s.users}>
-            <h2 className={s.title}>Users</h2>
+    render() {
 
-            <div className={s.users__list}>
-                {users1}
-            </div>
+        let usersBatch = this.props.users.map(user => <User follow={this.props.follow}
+            unfollow={this.props.unfollow}
+            key={user.id}
+            data={user} />);
 
-            <button className={s.users__more}>Show More</button>
-        </Main>
-    );
+        return (
+            <Main className={s.users}>
+                <h2 className={s.title}>Users</h2>
+
+                <div className={s.users__list}>
+                    {usersBatch}
+                </div>
+
+                <button className={s.users__more} onClick={ this.getUsers.bind(this) }>Show More</button>
+            </Main>
+        )
+    }
 }
 
 export default FindUser;

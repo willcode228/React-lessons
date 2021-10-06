@@ -16,17 +16,21 @@ const User = (props) => {
     return (
         <div className={s.user}>
             <div className={s.user__meta}>
-                <img src={props.data.photoUrl} alt="" />
+                {
+                    props.data.photos.small 
+                    ? <img src={props.data.photos.small} alt="" />
+                    : <div className={s.noImg}>{props.data.name.slice(0, 2)}</div>   
+                }
                 <button onClick={eventBtn} className="user__follow">{followBtnText}</button>
             </div>
             <div className={s.user__text}>
                 <div className={s.user__wrapper}>
-                    <h2 className={s.user__name}>{props.data.fullName}</h2>
-                    <p className={s.user__note}>{props.data.note}</p>
+                    <h2 className={s.user__name}>{props.data.name}</h2>
+                    <p className={s.user__note}>{props.data.status || 'Нет статуса'}</p>
                 </div>
                 <div className={s.user__place}>
-                    <h2 className={s.user__country}>{props.data.location.country}</h2>
-                    <h3 className={s.user__city}>{props.data.location.city}</h3>
+                    <h2 className={s.user__country}>Ukraine</h2>
+                    <h3 className={s.user__city}>Kirovograd</h3>
                 </div>
             </div>
         </div>
