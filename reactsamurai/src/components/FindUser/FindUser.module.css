@@ -29,3 +29,18 @@
     color: white;
     background: cornflowerblue;
 }
+
+.pages{
+    display: flex;
+}
+
+.pagePagination{
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.selectedPage{
+    color: blue;
+    font-weight: bold;
+}
