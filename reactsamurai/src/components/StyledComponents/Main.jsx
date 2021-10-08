@@ -5,4 +5,6 @@ export const Main = styled.div`
     flex-grow: 1;
     min-height: calc(100vh - 60px);
     background: blueviolet;
+    position: relative;
+    overflow: hidden;
 `;
