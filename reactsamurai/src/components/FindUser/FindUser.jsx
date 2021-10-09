@@ -2,7 +2,7 @@ import s from './FindUser.module.css';
 import User from './User/User';
 
 const FindUserClear = (props) => {
-
+    
     let usersBatch = props.users.map(user => (
             <User follow={props.follow}
                 unfollow={props.unfollow}

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import FindUserContainer from './components/FindUser/FindUserContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Settings from './components/Settings/Settings';
-import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import Music from './components/Music/Music';
 import Aside from './components/Aside/Aside';
@@ -19,7 +19,7 @@ function App(props) {
 
 				<Route path="/dialogs" render={ () => <DialogsContainer/> } />
 
-				<Route path="/profile" render={ () => <Profile/> } />
+				<Route path="/profile/:userId?" render={ () => <ProfileContainer/> } />
 
 				<Route path="/find" render={ () => <FindUserContainer /> } />
 

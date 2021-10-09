@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <Main>
             <ProfileHead />
-            <User />
+            <User profile={props.profile}/>
             <MyPostsContainer />
         </Main>
     );

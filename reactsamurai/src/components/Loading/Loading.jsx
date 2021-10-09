@@ -1,7 +1,7 @@
 import s from './Loading.module.css';
 
 const Loading = (props) => {
-    console.log(props.isFetching);
+
     if(!props.isFetching) {
         return null;
     }

@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        messages: state.profile.posts,
-        textarea: state.profile.textarea
+        messages: state.profilePage.posts,
+        textarea: state.profilePage.textarea
     }
 }
 
