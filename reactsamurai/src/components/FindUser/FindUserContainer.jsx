@@ -11,7 +11,9 @@ class FindUserApi extends React.Component{
     componentDidMount() {
         this.props.setLoader(true);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+                withCredentials: true
+            })
             .then(response => {
                 if (response.status === 200) {
                     this.props.setUsers(response.data.items);
@@ -25,12 +27,47 @@ class FindUserApi extends React.Component{
         this.props.setLoader(true);
         this.props.setNewPage(page);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
+                withCredentials: true
+            })
             .then(response => {
                 if (response.status === 200) {
                     this.props.setUsers(response.data.items);
                     this.props.setTotalUsersCount(response.data.totalCount);
                     this.props.setLoader(false);
+                }
+            })
+    }
+
+    follow = (userId) => {
+
+        axios
+            .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'd2cc1721-f2b2-45e7-80e1-3f2114255295'
+                }
+            })
+            .then(response => {
+                if (response.status === 200 && !response.data.resultCode) {
+                    this.props.follow(userId);
+                }
+            })
+
+    }
+
+    unfollow = (userId) => {
+
+        axios
+            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'd2cc1721-f2b2-45e7-80e1-3f2114255295'
+                }
+            })
+            .then(response => {
+                if (response.status === 200 && !response.data.resultCode) {
+                    this.props.unfollow(userId);
                 }
             })
     }
@@ -42,8 +79,8 @@ class FindUserApi extends React.Component{
 
                 <FindUser users={this.props.users}
                             setPage={this.setPage}
-                            follow={this.props.follow}
-                            unfollow={this.props.unfollow}
+                            follow={this.follow}
+                            unfollow={this.unfollow}
                             pageSize={this.props.pageSize}
                             currentPage={this.props.currentPage}
                             totalUsersCount={this.props.totalUsersCount}
@@ -62,29 +99,6 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
     }
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAc(userId));
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAc(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAc(users));
-//         },
-//         setNewPage: (page) => {
-//             dispatch(setPageAc(page));
-//         },
-//         setTotalUsersCount: (amount) => {
-//             dispatch(setTotalUsersCountAc(amount));
-//         },
-//         setLoader: (isFetching) => {
-//             dispatch(setLoaderAc(isFetching));
-//         }
-//     }
-// };
 
 export default connect(mapStateToProps, {
     follow, unfollow, setUsers, setNewPage, setTotalUsersCount, setLoader

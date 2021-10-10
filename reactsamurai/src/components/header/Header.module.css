@@ -2,4 +2,9 @@
     width: 100%;
     min-height: 60px;
     background: purple;
-  }
+    padding: 20px;
+}
+
+.login{
+    color: white
+}

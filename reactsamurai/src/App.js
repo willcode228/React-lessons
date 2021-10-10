@@ -3,17 +3,18 @@ import FindUserContainer from './components/FindUser/FindUserContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Settings from './components/Settings/Settings';
-import Header from './components/Header/Header';
 import Music from './components/Music/Music';
 import Aside from './components/Aside/Aside';
 import News from './components/News/News';
 import './App.css';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 function App(props) {
 	return (
 		<BrowserRouter>
 			<div className="App">
-				<Header />
+                
+				<HeaderContainer />
 				
 				<Aside data={props.state.aside}/>
 
