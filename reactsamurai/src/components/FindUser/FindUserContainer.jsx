@@ -1,75 +1,35 @@
 import React from 'react';
-import * as axios from 'axios';
 import FindUser from './FindUser';
 import {connect} from 'react-redux';
 import { follow, setLoader, setNewPage, setTotalUsersCount, setUsers, unfollow } from '../../redux/FindUserReducer';
 import Loading from '../Loading/Loading';
 import { Main } from '../StyledComponents/Main';
+import { usersAPI } from '../../Api/api';
 
 class FindUserApi extends React.Component{
 
     componentDidMount() {
-        this.props.setLoader(true);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                withCredentials: true
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    this.props.setUsers(response.data.items);
-                    this.props.setTotalUsersCount(response.data.totalCount);
-                    this.props.setLoader(false);
-                }
-            })
+        this.setPage();
     }
 
-    setPage = (page) => {
+    setPage = (page = 1) => {
         this.props.setLoader(true);
         this.props.setNewPage(page);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
-                withCredentials: true
-            })
+
+        usersAPI.getUsers(page, this.props.pageSize)
             .then(response => {
-                if (response.status === 200) {
-                    this.props.setUsers(response.data.items);
-                    this.props.setTotalUsersCount(response.data.totalCount);
-                    this.props.setLoader(false);
-                }
+                this.props.setUsers(response.items);
+                this.props.setTotalUsersCount(response.totalCount);
+                this.props.setLoader(false);
             })
     }
 
     follow = (userId) => {
-
-        axios
-            .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': 'd2cc1721-f2b2-45e7-80e1-3f2114255295'
-                }
-            })
-            .then(response => {
-                if (response.status === 200 && !response.data.resultCode) {
-                    this.props.follow(userId);
-                }
-            })
-
+        usersAPI.followUser(userId).then(() => { this.props.follow(userId); });
     }
 
     unfollow = (userId) => {
-
-        axios
-            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': 'd2cc1721-f2b2-45e7-80e1-3f2114255295'
-                }
-            })
-            .then(response => {
-                if (response.status === 200 && !response.data.resultCode) {
-                    this.props.unfollow(userId);
-                }
-            })
+        usersAPI.unfollowUser(userId).then(() => { this.props.unfollow(userId); });
     }
 
     render() {
