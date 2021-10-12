@@ -28,7 +28,12 @@ const User = (props) => {
                 }
                 </NavLink>
 
-                <button onClick={eventBtn} className="user__follow">{followBtnText}</button>
+        
+                <button onClick={eventBtn} 
+                        disabled={props.isInProgress.some(id => id === props.data.id)}
+                        className="user__follow">
+                            {followBtnText}
+                </button>
             </div>
             <div className={s.user__text}>
                 <div className={s.user__wrapper}>
