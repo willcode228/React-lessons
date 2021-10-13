@@ -29,3 +29,21 @@ const unfollowUser = (userId) => {
 }
 
 export const usersAPI = { getUsers, followUser, unfollowUser }
+
+
+const auth = () => {
+    return instance
+        .get(`auth/me`)
+        .then(response => response.data);
+}
+
+export const authAPI = {auth}
+
+const setProfile = (userId) => {
+    return instance
+        .get(`profile/${userId}`)
+        .then(response => response.data)
+}
+
+export const profileAPI = {setProfile}
+
