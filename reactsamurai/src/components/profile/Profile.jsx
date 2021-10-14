@@ -4,6 +4,7 @@ import ProfileHead from './ProfileHead/ProfileHead';
 import User from './User/User';
 
 const Profile = (props) => {
+
     return (
         <Main>
             <ProfileHead />
