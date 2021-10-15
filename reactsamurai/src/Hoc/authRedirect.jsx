@@ -18,7 +18,7 @@ const authRedirect = (Container) => {
         isAuth: state.auth.isAuth
     });
 
-    return connect(mapStateToProps, {})(RedirectContainer);;
+    return connect(mapStateToProps)(RedirectContainer);;
 }
 
 
