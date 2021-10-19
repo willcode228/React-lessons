@@ -20,7 +20,8 @@ const User = (props) => {
             <div className="profile__meta">
                 <h3 className="profile__meta-name">{props.profile.fullName}</h3>
                 <p className="profile__meta-about">{props.profile.aboutMe}</p>
-                <UserStatus status={props.profile.aboutMe}/>
+
+                <UserStatus status={props.status} updateStatus={props.updateStatus}/>
 
                 {
                     props.profile.lookingForAJob 

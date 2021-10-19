@@ -1,20 +1,10 @@
-import { useState } from "react";
-import axios from "axios";
 
-const UserStatus = (props) => {
-
-    const [status, setStatus] = useState('No status');
+const UserStatus = ({status, updateStatus}) => {
 
     const handleChangeStatus = () => {
-        let statusText = prompt('Set new status',status).trim();
+        let statusText = prompt('Set new status', status).trim();
         if(statusText === status) return;
-
-        axios
-            .put(`https://social-network.samuraijs.com/api/1.0/profile/status`, {status: statusText})
-            .then(response => {
-                console.log(response) 
-            });
-
+        updateStatus(statusText);
     }
 
     return (

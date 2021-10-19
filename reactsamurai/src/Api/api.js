@@ -45,5 +45,13 @@ const setProfile = (userId) => {
         .then(response => response.data)
 }
 
-export const profileAPI = {setProfile}
+const getStatus = (userId) => {
+    return instance.get(`profile/status/${userId}`)
+}
+
+const updateStatus = (status) => {
+    return instance.put('profile/status', {status})
+}
+
+export const profileAPI = {setProfile, getStatus, updateStatus};
 
