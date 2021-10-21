@@ -1,0 +1,11 @@
+.login{
+    padding: 40px;
+}
+
+.login__line{
+    margin-bottom: 10px;
+}
+
+.login__line input[type="checkbox"] {
+    margin-right: 10px;
+}
