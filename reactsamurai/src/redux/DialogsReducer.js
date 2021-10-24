@@ -1,5 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE',
-    CHANGE_DIALOGS_AREA = 'CHANGE-DIALOGS-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -17,7 +16,6 @@ let initialState = {
         { text: 'Hey', id: 4 },
         { text: 'Hey', id: 5 },
     ],
-    textarea: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -26,20 +24,13 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: 
 
             let newMessage = {
-                text: state.textarea,
+                text: action.message,
                 id: state.messages.length + 1
             }
 
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                textarea: ''
-            };
-        
-        case CHANGE_DIALOGS_AREA:
-            return {
-                ...state,
-                textarea: action.text
+                messages: [...state.messages, newMessage]
             };
             
         default: 
@@ -47,13 +38,9 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessage = () => ({
-    type: ADD_MESSAGE
-});
-
-export const changeAreaText = (text) => ({
-    type: CHANGE_DIALOGS_AREA, 
-    text
+export const addMessage = (message) => ({
+    type: ADD_MESSAGE,
+    message
 });
 
 export default dialogsReducer

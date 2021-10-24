@@ -1,13 +1,11 @@
 import { profileAPI } from "../Api/api";
 
 const ADD_POST = 'ADD-POST',
-    CHANGE_POST_AREA = 'CHANGE-POST-TEXT',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     GET_USER_STATUS = 'GET_USER_STATUS';
 
 let initialState = {
     posts: [],
-    textarea: '',
     profile: null,
     status: ''
 }
@@ -18,7 +16,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: 
         
             let newPost = {
-                message: state.textarea, 
+                message: action.newPostText, 
                 likes: 0, 
                 id: state.posts.length + 1
             }
@@ -29,12 +27,6 @@ const profileReducer = (state = initialState, action) => {
                 textarea: ''
             };
         
-        case CHANGE_POST_AREA:
-            return {
-                ...state,
-                textarea: action.text
-            };
-
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -52,13 +44,9 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => ({
-    type: ADD_POST
-});
-
-export const changePostText = (text) => ({
-    type: CHANGE_POST_AREA, 
-    text
+export const addPost = (newPostText) => ({
+    type: ADD_POST,
+    newPostText
 });
 
 export const acceptSetUserProfile = (profile) => ({
