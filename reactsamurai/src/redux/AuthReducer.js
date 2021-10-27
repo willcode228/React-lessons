@@ -32,8 +32,27 @@ export const auth = () => (dispatch) => {
     authAPI
         .auth()
         .then( response => {
-
             dispatch(setAuthUserData(!response.resultCode, response.data));
+        });
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI
+        .login(email, password, rememberMe)
+        .then((response) => {
+            if(response.status === 200) {
+                dispatch(auth());
+            }
+        });
+}
+
+export const logout = () => (dispatch) => {
+    authAPI
+        .logout()
+        .then((response) => {
+            if(response.status === 200) {
+                dispatch(setAuthUserData(false, null));
+            }
         });
 }
 

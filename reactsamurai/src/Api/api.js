@@ -37,7 +37,15 @@ const auth = () => {
         .then(response => response.data);
 }
 
-export const authAPI = {auth}
+const login = ({email, password, rememberMe = false}) => {
+    return instance.post('auth/login', {email, password, rememberMe});
+}
+
+const logout = () => {
+    return instance.delete('auth/login');
+}
+
+export const authAPI = {auth, login, logout}
 
 const setProfile = (userId) => {
     return instance

@@ -2,7 +2,7 @@ import React from 'react';
 import FindUser from './FindUser';
 import {connect} from 'react-redux';
 import { follow, getUsers, unfollow } from '../../redux/FindUserReducer';
-import Loading from '../Loading/Loading';
+import Loading from '../common/Loading/Loading';
 import { Main } from '../StyledComponents/Main';
 
 class FindUserApi extends React.Component{

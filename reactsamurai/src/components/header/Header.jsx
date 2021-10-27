@@ -15,6 +15,8 @@ const Header = (props) => {
         <header className={`${s.header} header`}>
             <p>{props.login}</p>
             <p>{props.email}</p>
+
+            <button onClick={() => props.logout()}>Logout</button>
         </header>
     )
 }

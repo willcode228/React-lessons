@@ -1,4 +1,4 @@
-import Loading from '../../Loading/Loading';
+import Loading from '../../common/Loading/Loading';
 import s from './User.module.css'
 import UserStatus from './UserStatus/UserStatus';
 
