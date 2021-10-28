@@ -1,7 +1,7 @@
 import s from './Login.module.css';
 import { Main } from '../StyledComponents/Main';
 import { Field, reduxForm } from 'redux-form';
-import { Input } from '../common/FormsModal/FormsModal';
+import { Input, SummaryFormError } from '../common/FormsModal/FormsModal';
 import { required } from '../../utils/validators/validators';
 import { connect } from 'react-redux';
 import { login, logout } from '../../redux/AuthReducer';
@@ -28,6 +28,18 @@ const Login = (props) => {
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
+
+            {
+                props.error 
+                    ? (
+                        <div className={s.formSummaryError}>
+                            {props.error}
+                        </div>
+                    )
+                    : null
+
+            }
+
             <div>
                 <Field name='email' component={Input} validate={[required]} placeholder='Login'/>
             </div>
