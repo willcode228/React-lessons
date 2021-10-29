@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import FindUserContainer from './components/FindUser/FindUserContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -9,15 +9,31 @@ import Aside from './components/Aside/Aside';
 import News from './components/News/News';
 import './App.css';
 import Login from './components/Login/Login';
+import React from 'react';
+import { compose } from 'redux';
+import { auth } from './redux/AuthReducer';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { initializedApp } from './redux/AppReducer';
+import Loading from './components/common/Loading/Loading';
 
-function App(props) {
-    return (
-        <BrowserRouter>
+class App extends React.Component {
+
+    componentDidMount() {
+        this.props.initializedApp();
+    }
+
+    render() {
+        if(!this.props.initialized) {
+            return <Loading />
+        }
+
+        return (
             <div className="App">
 
                 <HeaderContainer />
 
-                <Aside data={props.state.aside} />
+                <Aside data={this.props.state.aside} />
 
                 <Route path="/dialogs" render={() => <DialogsContainer />} />
 
@@ -34,8 +50,14 @@ function App(props) {
                 <Route path="/login" component={Login}/>
 
             </div>
-        </BrowserRouter>
-    );
+        );
+    }
 }
 
-export default App;
+let mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+});
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, { initializedApp }))(App);
