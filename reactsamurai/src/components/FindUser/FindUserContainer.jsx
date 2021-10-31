@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { follow, getUsers, unfollow } from '../../redux/FindUserReducer';
 import Loading from '../common/Loading/Loading';
 import { Main } from '../StyledComponents/Main';
+import { getCurrentPageSelector, getIsFetchingSelector, getIsInProgress, getPageSizeSelector, getTotalCountSelector, getUsersSelectorSuper } from '../../redux/FindUsersSelectors';
 
 class FindUserApi extends React.Component{
 
@@ -45,14 +46,16 @@ class FindUserApi extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isInProgress: state.usersPage.isInProgress
+        users: getUsersSelectorSuper(state),
+        pageSize: getPageSizeSelector(state),
+        totalUsersCount: getTotalCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        isInProgress: getIsInProgress(state)
     }
 };
+
+
 
 export default connect(mapStateToProps, {
     getUsers, follow, unfollow
