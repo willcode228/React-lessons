@@ -1,4 +1,5 @@
 import s from './FindUser.module.css';
+import Paginator from './Paginator';
 import User from './User/User';
 
 const FindUserClear = (props) => {
@@ -12,30 +13,16 @@ const FindUserClear = (props) => {
         )
     );
 
-    let pagesPaginationCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pagesPagination = [];
-
-    for(let i = 1; i <= pagesPaginationCount; i++) {
-        pagesPagination.push(
-    <span className={props.currentPage === i 
-                            ? `${s.selectedPage} ${s.pagePagination}` 
-                            : `${s.pagePagination}`} 
-
-                    onClick={ () => { props.setPage(i) } }
-                    key={i}>
-                {i}
-            </span>
-        );
-    }
-
     return ( 
         <div className={s.users}>
 
             <h2 className={s.title}>Users</h2>
 
             <div className={s.pages}>
-                {pagesPagination}
+                <Paginator totalUsersCount={props.totalUsersCount} 
+                            pageSize={props.pageSize}
+                            currentPage={props.currentPage}
+                            setPage={props.setPage}/>
             </div>
 
             <div className={s.users__list}>
