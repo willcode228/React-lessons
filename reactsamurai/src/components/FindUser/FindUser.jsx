@@ -1,5 +1,5 @@
 import s from './FindUser.module.css';
-import Paginator from './Paginator';
+import Paginator from './Paginator/Paginator';
 import User from './User/User';
 
 const FindUserClear = (props) => {
@@ -19,7 +19,7 @@ const FindUserClear = (props) => {
             <h2 className={s.title}>Users</h2>
 
             <div className={s.pages}>
-                <Paginator totalUsersCount={props.totalUsersCount} 
+                <Paginator totalItemsCount={props.totalUsersCount} 
                             pageSize={props.pageSize}
                             currentPage={props.currentPage}
                             setPage={props.setPage}/>
