@@ -9,7 +9,7 @@ let initialState = {
     posts: [],
     profile: null,
     status: '',
-    photo: ''
+    photos: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -103,8 +103,8 @@ export const updateStatus = (status) => (dispatch) => {
 
 export const savePhoto = (photo) => (dispatch) => {
     profileAPI.setPhoto(photo)
-            .then(response => {
-                dispatch(savePhotoSuccess(response.data.photos))
+            .then(a => {
+                dispatch(savePhotoSuccess(a.data.data.photos))
             });
 }
 

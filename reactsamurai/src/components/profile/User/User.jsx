@@ -6,7 +6,7 @@ import { required } from '../../../utils/validators/validators';
 import {FieldFileInput} from '../../common/FormsModal/FormsModal';
 
 const User = (props) => {
-
+    console.log(props.profile);
     const handleSubmit = (value) => {
         props.savePhoto(value.image);
     }
@@ -19,7 +19,7 @@ const User = (props) => {
         <div className={s.profile__user}>
             <div className={s.profile__ava}>
                 {
-                    props.profile.photos.small
+                    props.profile.photos
                         ? <img src={props.profile.photos.large} alt="ava" />
                         : <h2 className={s.noImg}>{props.profile.fullName.slice(0, 2)}</h2>
                 }
@@ -41,6 +41,11 @@ const User = (props) => {
                         : <p>I'm not looking for a job now</p>
 
                 }
+
+                {
+                    props.profile.aboutMe ? <p>About me {props.profile.aboutMe}</p> : null
+                }
+
                 <div className="profile__meta-contacts">
                     {
                         props.profile.contacts.facebook ? <p>Facebook: {props.profile.contacts.facebook}</p> : null
