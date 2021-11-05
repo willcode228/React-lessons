@@ -72,5 +72,11 @@ const setPhoto = (photo) => {
     });
 }
 
-export const profileAPI = {setProfile, getStatus, updateStatus, setPhoto};
+const updateProfileData = (data, userId) => {
+    return instance
+                .put('/profile', {...data, userId})
+                .then(response => response);
+}
+
+export const profileAPI = {setProfile, getStatus, updateStatus, setPhoto, updateProfileData};
 

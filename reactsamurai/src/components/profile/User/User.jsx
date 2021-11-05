@@ -6,10 +6,9 @@ import { required } from '../../../utils/validators/validators';
 import { FieldFileInput } from '../../common/FormsModal/FormsModal';
 import { useState } from 'react';
 import UserData from './UserData/UserData';
-import UserDataForm from './Form/Form'
+import ReduxUserDataForm from './Form/Form';
 
 const User = (props) => {
-
     const [editMode, setEditMode] = useState(false);
 
     const cancel = () => {
@@ -18,6 +17,11 @@ const User = (props) => {
 
     const handleSubmit = (value) => {
         props.savePhoto(value.image);
+    }
+
+    const handleUserSubmit = (value) => {
+        props.updateProfileData(value, props.authorizedUserId)
+            .then(() => { setEditMode(false) });
     }
 
     if (!props.profile) {
@@ -43,15 +47,9 @@ const User = (props) => {
             }
 
             {
-                props.isAuth && !props.userId
-                ? <><button onClick={() => setEditMode(!editMode)}>Turn edit mode</button><br></br><br></br><br></br></>
-                : null
-            }
-
-            {
                 editMode 
-                    ? <UserDataForm cancel={cancel}/>
-                    : <UserData profile={props.profile} userId={props.userId}/>
+                    ? <ReduxUserDataForm initialValues={props.profile} onSubmit={handleUserSubmit} cancel={cancel} profile={props.profile}/>
+                    : <UserData profile={props.profile} userId={props.userId} turnEditMode={() => setEditMode(true)}/>
             }
         </div>
     );
@@ -66,7 +64,6 @@ let UserForm = (props) => {
         </form>
     );
 }
-
 
 let ReduxUserForm = reduxForm({
     form: 'ava'
