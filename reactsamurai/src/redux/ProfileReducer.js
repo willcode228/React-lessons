@@ -112,12 +112,12 @@ export const savePhoto = (photo) => (dispatch) => {
 export const updateProfileData = (data, userId) => async (dispatch) => {
     let response = await profileAPI.updateProfileData(data, userId);
 
-    if(response.status === 200) {
+    if(response.status === 200 && response.data.resultCode === 0) {
         dispatch(setProfile(userId));
         return Promise.resolve();
     } else {
-        dispatch(stopSubmit('userData', {_error: response.data.message[0]}))
-        return Promise.reject(response.data.message[0]);
+        dispatch(stopSubmit('userData', {_error: response.data.messages[0]}))
+        return Promise.reject(response.data.messages[0]);
     }
 
 }
