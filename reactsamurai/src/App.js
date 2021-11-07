@@ -4,7 +4,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Loading from './components/common/Loading/Loading';
 import { initializedApp } from './redux/AppReducer';
 import Aside from './components/Aside/Aside';
-import { withRouter } from 'react-router'
+import { Redirect, Switch, withRouter } from 'react-router'
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -37,19 +37,23 @@ class App extends React.Component {
 
                 <Aside data={this.props.state.aside} />
 
-                <Route path="/dialogs" render={() => <DialogsContainer />} />
 
-                <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+                <Suspense fallback={<Loading />}>
 
-                <Route path="/find" render={() => <Suspense fallback={<Loading />}><FindUserContainer /></Suspense>} />
+                <Switch>
 
-                <Route path="/news" render={() => <Suspense fallback={<Loading />}><News /></Suspense>} />
+                    <Route path="/news" component={News} exact/>
+                    <Route path="/login" component={Login} exact/>
+                    <Route path="/music" component={Music} exact/>
+                    <Route path="/settings" component={Settings} exact/>
+                    <Route path="/find" component={FindUserContainer} exact/>
+                    <Route path="/dialogs" component={DialogsContainer} exact/>
+                    <Route path="/profile/:userId?" component={ProfileContainer} exact/>
 
-                <Route path="/music" render={() => <Suspense fallback={<Loading />}><Music /></Suspense>}/>
+                    <Redirect to='/profile/:userId?'/>
+                </Switch>
 
-                <Route path="/settings" render={() => <Suspense fallback={<Loading />}><Settings /></Suspense> }/>
-
-                <Route path="/login" render={() => <Suspense fallback={<Loading />}><Login /></Suspense>}/>
+                </Suspense>
 
             </div>
         );

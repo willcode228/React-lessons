@@ -29,8 +29,6 @@ const FindUserClear = (props) => {
                 {usersBatch}
             </div>
 
-            <button className={s.users__more}>Show More</button>
-
         </div>
     )
 }
